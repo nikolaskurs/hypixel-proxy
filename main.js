@@ -53,7 +53,7 @@ proxy.on('login', async (client) => {
             }
             if (meta.name === 'chat') {
                 const msg = JSON.parse(data.message)
-                //console.log(formatMCChat(msg))
+                //console.log((msg)) //debugging
             }
         });
 
@@ -62,6 +62,7 @@ proxy.on('login', async (client) => {
         client.write = (name, data) => {
             if (name === 'chat' && data?.message) {
                 const msg = JSON.parse(data.message)
+                //console.log(msg) //debugging
                 if (msg) console.log(formatMCChat(msg))
             }
 
@@ -73,6 +74,7 @@ proxy.on('login', async (client) => {
 
                 if (meta.name === 'chat') {
                     const msg = data.message;
+                    log.message(msg) //debugging //add toggle
                     if (msg.startsWith('/')) {
                         const args = msg.slice(1).trim().split(/\s+/);
                         const cmdName = args[0]?.toLowerCase();

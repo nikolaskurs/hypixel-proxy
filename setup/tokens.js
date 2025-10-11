@@ -1,9 +1,12 @@
 const fs = require('fs');
 const log = require('./log.js')
 
+let firstTime = false
+
 function createTokenDir(dir) {
     if (!fs.existsSync(dir)) {
         log.warn('loginTokens does not exist — attempting to create...');
+        let firstTime = true
         try {
             fs.mkdirSync(dir, { recursive: true });
 

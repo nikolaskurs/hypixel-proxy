@@ -20,13 +20,11 @@ function formatMCChat(json) {
 
     const plainText = flattenJSON(json);
 
-    // Case 0: Ignore server JSON messages
-    if (plainText.startsWith('{') && plainText.includes('"server":')) {
+    if (plainText.startsWith('{') && plainText.includes('"server":')) { //ignore auto /locraw responses from lunar client
         return '';
     }
 
-    // Case 1: Raw § color codes
-    if (plainText.includes('§')) {
+    if (plainText.includes('§')) { //parse mc colour codes 
         const parts = plainText.split(/(§.)/gi); 
         let currentStyle = chalkColours['r'];
         let formatted = '';
@@ -49,8 +47,7 @@ function formatMCChat(json) {
 
     let result = '';
 
-    // Case 2: Text first
-    if (json.text) {
+    if (json.text) { //parse server json messages text: color:
         let styledText = json.text.replace(/§[lornm]/gi, '');
         if (json.color) {
             let colorKey = json.color.replace(/ /g, '_').toUpperCase();
@@ -61,8 +58,7 @@ function formatMCChat(json) {
         result += styledText;
     }
 
-    // Case 3: Process extra array
-    if (json.extra && Array.isArray(json.extra)) {
+    if (json.extra && Array.isArray(json.extra)) { //parse server json messages extra: text: color:
         function processExtra(extraArray) {
             for (const part of extraArray) {
                 if (!part.text) continue;
