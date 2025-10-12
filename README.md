@@ -38,10 +38,29 @@ Contributions are more than welcome, however please adhere to some rules:
 - Test your changes before opening a pull request.  
 - Follow the existing project structure and naming conventions.  
 - Be respectful to others.
-- Know your audience - Minecraft is still a kids game. 
+- Know your audience - Minecraft is still a kids game.
 
 If you’re unsure about a change or feature, open an issue first to discuss it before submitting a pull request.  
 If you wish for credit inside the project, contact [me](https://discordapp.com/users/1100106252677304350).
+
+### Commenting Guidlines
+Please use the below format:
+
+- Main Section Headers   
+```// ─── MAIN HEADER ───────────────────────────────────────────────────────```
+- Section Headers   
+```// --- HEADER ------------------------------------------------------------```
+- Extended Explanation
+```
+/**
+ * This is an Extended Explanation.
+ * JSDoc Style Comment.
+**/
+```
+- Simple Explanation   
+```// This is a Simple Explanation```
+
+If you comment nicely, others can understand and learn from your work!
 
 ## Help
 If you encounter issues, first check:
