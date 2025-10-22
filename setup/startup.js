@@ -1,9 +1,21 @@
 const chalkColours = require('./colours');
 
+const msgs = [
+    ["Thankyou for downloading!", "Have fun!"],
+    ["hashire hashire", "uma musume"],
+    ['"vorteks #1 skid"', "^ he helped me with something so he got this space - kqt"],
+    ["ERROR CODE: C005B", "GENMEGA ATM 2ND CASSETTE MISFEED"],
+    ["shut up demon", "ぞるとらく (zoltraak)"],
+    ["Spread LOVE", "Not HATE"],
+    ["how to make pickle pepsi at home for free", "https://www.youtube.com/watch?v=1yMozrDEqbg"]
+];
+
+const [msg1, msg2] = msgs[Math.floor(Math.random() * msgs.length)];
+
 const startupMessage =
     chalkColours.RED('╔═════════════════════════════╗\n') +
-    chalkColours.RED('║') + chalkColours.GOLD('     HYPIXEL PROXY SERVER    ') + chalkColours.RED('║') + '     Thankyou for downloading!\n' +
-    chalkColours.RED('║') + chalkColours.GOLD('  © 2025 Nikolas "Kqt" Kurš  ') + chalkColours.RED('║') + '     Have fun!\n' +
+    chalkColours.RED('║') + chalkColours.GOLD('     HYPIXEL PROXY SERVER    ') + chalkColours.RED('║') + `     ${msg1}\n` +
+    chalkColours.RED('║') + chalkColours.GOLD('  © 2025 Nikolas "kqt" Kurš  ') + chalkColours.RED('║') + `     ${msg2}\n` +
     chalkColours.RED('╚═════════════════════════════╝')
 
 module.exports = startupMessage
