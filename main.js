@@ -4,6 +4,8 @@ const { formatMCChat } = require('./setup/chat.js');
 const log = require('./setup/log.js')
 const { commands, handleCommand } = require('./commandHandler.js')
 const { alertNewVersion } = require('./setup/version.js')
+const { parseLocraw } = require('./location/parseLocraw.js')
+const { cacheInventory } = require('./gui/inventory.js')
 
 // ─── START UP ──────────────────────────────────────────────────────────
 // --- COSMETICS ---------------------------------------------------------
@@ -11,10 +13,15 @@ const startupMessage = require('./setup/startup.js')
 console.log(startupMessage)
 // --- CHECK AND CREATE loginTokens DIR ----------------------------------
 const tokenDir = './loginTokens'
-const { createTokenDir } = require('./setup/tokens.js')
+const { createTokenDir, checkTokenDir } = require('./setup/tokens.js')
 createTokenDir(tokenDir)
+checkTokenDir(tokenDir)
+// --- CHECK AND CREATE settings.json ------------------------------------
+const settings = './settings/settings.json'
+const { checkSettings, getSettings } = require('./settings/getSettings.js');
+checkSettings(settings)
 // --- CHECK FOR OUTDATED VERSIONS ---------------------------------------
-const globalVersion = '1.0.0' // change to call from api
+const globalVersion = '1.0.1' // change to call from api
 alertNewVersion(globalVersion)
 // ─── CREATE LOCAL SERVER ───────────────────────────────────────────────
 const port = 25565
@@ -57,8 +64,15 @@ proxy.on('login', async (client) => {
                 client.write(meta.name, data);
             }
             if (meta.name === 'chat') {
+                parseLocraw(data)
                 //const msg = JSON.parse(data.message)
                 //console.log(msg) //debugging
+            }
+            if (meta.name === 'window_items' && meta.state === 'play') {
+                if (data.windowId === 0) { // player inventory only
+                    cacheInventory(client, data.items);
+                    //log.debug(`Cached ${data.items.length} inventory slots`);
+                }
             }
         });
         // --- LOG CHAT --------------------------------------------------
@@ -68,10 +82,12 @@ proxy.on('login', async (client) => {
         **/
         const originalWrite = client.write.bind(client);
         client.write = (name, data) => {
-            if (name === 'chat' && data?.message) {
-                const msg = JSON.parse(data.message)
-                //console.log(msg) //debugging
-                if (msg) console.log(formatMCChat(msg))
+            if (name === 'chat' && data?.message && data.position === 0) {
+                const settings = getSettings();
+                if (settings.chat.fullLogs) {
+                    const msg = JSON.parse(data.message);
+                    if (msg) console.log(formatMCChat(msg));
+                }
             }
             return originalWrite(name, data);
         };
@@ -80,7 +96,10 @@ proxy.on('login', async (client) => {
             if (meta.state === 'play') {
                 if (meta.name === 'chat') {
                     const msg = data.message;
-                    log.message(msg) // Client Message Logs - add toggle
+                    const settings = getSettings();
+                    if (settings.chat.selfLogs) {
+                        log.message(msg)
+                    } // Client Message Logs - add toggle
                     // --- HANDLE COMMANDS --------------------------------
                     if (msg.startsWith('/')) {
                         const args = msg.slice(1).trim().split(/\s+/);

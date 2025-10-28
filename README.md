@@ -71,9 +71,28 @@ If you encounter issues, first check:
 If you still encounter problems contact me [here](https://discordapp.com/users/1100106252677304350), or email me at nikolas@kqtisa.dev.  
 If project gains popularity I will make a discord server.
 
+## Versions
+This project is currently a WIP, and new versions may be released.
+
+### v1.0.1
+**Features**
+- Re-Vamped /play commands for Hypixel, with a working client-side GUI system for QoL.
+- Chat Messages recorded in the console in colour.
+- Beginning of a settings system - currently no interface for it.
+
+**Issues**
+- Disconnecting client because error Error: write ECONNABORTED isn't properly handled as an error.
+- Opening new GUI resets mouse - workaround is refilling the items of the GUI instead of reopening.
+- Parent formatting of server-side chat messages doesn't extent to child/extra when in console.
+- Upon Changing Sub-Server mid xpBar edit, it will break - reverts to "67" for now.
+
+**To-Do**
+- Add Custom Player Heads inside the /play GUIs.
+- A lot of API work - possibly intergrating an already existing wrapper into the code.
+
 ## Authors
 
-- **Nikolas 'Kqt' Kurš**  
+- **Nikolas 'kqt' Kurš**  
   [GitHub](https://github.com/nikolaskurs)
 
 ## License

@@ -1,13 +1,15 @@
 const chalkColours = require('./colours');
 
 const msgs = [
-    ["Thankyou for downloading!", "Have fun!"],
+    ["Thank You for downloading!", "Have fun!"],
     ["hashire hashire", "uma musume"],
-    ['"vorteks #1 skid"', "^ he helped me with something so he got this space - kqt"],
+    ['"vorteks #1 skid"', "rent this space for $5 a month"],
     ["ERROR CODE: C005B", "GENMEGA ATM 2ND CASSETTE MISFEED"],
     ["shut up demon", "ぞるとらく (zoltraak)"],
     ["Spread LOVE", "Not HATE"],
-    ["how to make pickle pepsi at home for free", "https://www.youtube.com/watch?v=1yMozrDEqbg"]
+    ["how to make pickle pepsi at home for free", "https://www.youtube.com/watch?v=1yMozrDEqbg"],
+    ["join and give suggestions pls!", "https://discord.gg/ukcfz33836"]
+
 ];
 
 const [msg1, msg2] = msgs[Math.floor(Math.random() * msgs.length)];

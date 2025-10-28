@@ -1,99 +1,106 @@
+const { createGUI } = require("../gui/setup");
+
+//#region playCommands
 function selectMode(mode, subMode, subSubMode) {
     switch (mode) {
         // #region ARCADE (VAR)
         // ================== ARCADE ==================
         case 'blockingdead':
         case 'dayone':
-        case 'bkd':
+        case 'bd':
             return 'arcade_day_one';
         case 'bountyhunters':
-        case 'bth':
+        case 'bh':
             return 'arcade_bounty_hunters';
         case 'creeperattack':
-        case 'cpt':
+        case 'ca':
             return 'arcade_creeper_defense';
         case 'dragonwars':
         case 'dw':
             return 'arcade_dragon_wars';
         case 'dropper':
-        case 'dr':
+        case 'd':
             return 'arcade_dropper';
         case 'enderspleef':
-        case 'esp':
+        case 'es':
             return 'arcade_ender_spleef';
         case 'farmhunt':
-        case 'fht':
+        case 'fh':
             return 'arcade_farm_hunt';
         case 'football':
         case 'soccer':
-        case 'ftb':
+        case 'fb':
             return 'arcade_soccer';
         case 'galaxywars':
         case 'starwars':
-        case 'gxw':
+        case 'gw':
             return 'arcade_starwars';
         case 'hideandseekprop':
         case 'prophunt':
         case 'hideandseekprophunt':
-        case 'hasph':
+        case 'hnsph':
             return 'arcade_hide_and_seek_prop_hunt';
         case 'hideandseekparty':
         case 'hideandseekpartypooper':
         case 'partypooper':
-        case 'haspp':
+        case 'hnspp':
             return 'arcade_hide_and_seek_party_pooper';
         case 'holeinthewall':
         case 'hitw':
             return 'arcade_hole_in_the_wall';
         case 'hypixelsays':
         case 'simonsays':
-        case 'ssy':
-        case 'hsy':
+        case 'hs':
             return 'arcade_simon_says';
         case 'miniwalls':
         case 'miw':
             return 'arcade_mini_walls';
         case 'partygames':
-        case 'pyg':
+        case 'pg':
             return 'arcade_party_games_1';
         case 'pixelparty':
         case 'ppy':
             return 'arcade_pixel_party';
         case 'pixelpainters':
-        case 'ppt':
+        case 'pps':
             return 'arcade_pixel_painters';
         case 'throwout':
-        case 'thw':
+        case 'to':
             return 'arcade_throw_out';
-        case 'zombiesde':
-        case 'zombiesdeadend':
-            return 'arcade_zombies_dead_end';
-        case 'zombiesbadblood':
-        case 'zombiesbb':
-            return 'arcade_zombies_bad_blood';
-        case 'zombiesalienarcadium':
-        case 'zombiesaa':
-            return 'arcade_zombies_alien_arcadium';
-        case 'zombiesprison':
-        case 'zombiesp':
-            return 'arcade_zombies_prison';
+        case 'zombies':
+        case 'z':
+            if (!subMode) return null;
+            switch (subMode) {
+                case 'deadend':
+                case 'de':
+                    return 'arcade_zombies_dead_end';
+                case 'badblood':
+                case 'bb':
+                    return 'arcade_zombies_bad_blood';
+                case 'alienarcadium':
+                case 'aa':
+                    return 'arcade_zombies_alien_arcadium';
+                case 'prison':
+                case 'p':
+                    return 'arcade_zombies_prison';
+            }
         case 'halloweensim':
-        case 'hsm':
+        case 'hsim':
             return 'arcade_halloween_simulator';
         case 'eastersim':
-        case 'esm':
+        case 'esim':
             return 'arcade_easter_simulator';
         case 'scubasim':
         case 'summersim':
-        case 'ssm':
+        case 'ssim':
             return 'arcade_scuba_simulator';
         case 'holidaysim':
         case 'grinchsim':
         case 'grinchsimv2':
-        case 'gsm':
+        case 'gsim':
             return 'arcade_grinch_simulator_v2';
         case 'santasays':
-        case 'sty':
+        case 'ss':
             return 'arcade_santa_says';
         //#endregion
         // #region ARENABRAWL (ABW)
@@ -108,6 +115,7 @@ function selectMode(mode, subMode, subSubMode) {
                 case '1v1':
                     return 'arena_1v1'
                 case 'doubles':
+                case 'duos':
                 case '2':
                 case '2v2':
                     return 'arena_2v2'
@@ -173,6 +181,7 @@ function selectMode(mode, subMode, subSubMode) {
         // #region BLITZSG (BSG)
         // ================== BLITZSG ==================
         case 'blitz':
+        case 'blitzsg':
         case 'bsg':
             if (!subMode) return null;
             switch (subMode) {
@@ -214,6 +223,7 @@ function selectMode(mode, subMode, subSubMode) {
         // ================== COPS AND CRIMS ==================
         case 'copsandcrims':
         case 'mcgo':
+        case 'cc':
             if (!subMode) return null;
             switch (subMode) {
                 case 'defusal':
@@ -246,6 +256,7 @@ function selectMode(mode, subMode, subSubMode) {
         // ================== DUELS ==================
         case 'duels':
         case 'duel':
+        case 'dls':
             if (!subMode) return null;
             switch (subMode) {
                 case 'arena':
@@ -253,6 +264,7 @@ function selectMode(mode, subMode, subSubMode) {
                 case 'potion':
                 case 'nodebuff':
                 case 'ndb':
+                case 'pot':
                     return 'duels_potion_duel'
                 case 'parkour':
                 case 'pkr':
@@ -261,6 +273,7 @@ function selectMode(mode, subMode, subSubMode) {
                 case 'mwd':
                     return 'duels_mw_duel'
                 case 'bedwars':
+                case 'bw':
                     if (!subSubMode) return 'bedwars_two_one_duels'
                     switch (subSubMode) {
                         case 'rush':
@@ -389,6 +402,7 @@ function selectMode(mode, subMode, subSubMode) {
             return 'paintball'
         case 'quake':
         case 'quakecraft':
+        case 'qke':
             if (!subMode) return null;
             switch (subMode) {
                 case 'solo':
@@ -409,6 +423,9 @@ function selectMode(mode, subMode, subSubMode) {
         // #endregion CLASSICGAMES
         case 'pit':
             return 'pit'
+        case 'skyblock':
+        case 'sb':
+            return 'skyblock'
         // #region SKYWARS (SW)
         // ================== SKYWARS ==================
         case 'skywars':
@@ -416,23 +433,33 @@ function selectMode(mode, subMode, subSubMode) {
             if (!subMode) return null;
             switch (subMode) {
                 case 'normal':
-                case 'insane':
                     if (!subSubMode) return `solo_${subMode}`;
                     switch (subSubMode) {
                         case 'solo':
                             return `solo_${subMode}`
                         case 'doubles':
                         case 'duos':
-                            return `solo_${subMode}`
+                            return `teams_${subMode}`
                         default:
                             return null;
                     }
+                case 'insane':
+                    return 'solo_insane'
                 case 'mini':
                     return 'mini_normal'
                 case 'mega':
                     return 'mega_doubles'
                 case 'lucky':
-                    return 'solo_insane_lucky'
+                    if (!subSubMode) return `solo_${subMode}`;
+                    switch (subSubMode) {
+                        case 'solo':
+                            return `solo_insane_${subMode}`
+                        case 'doubles':
+                        case 'duos':
+                            return `teams_insane_${subMode}`
+                        default:
+                            return null;
+                    }
                 case 'duel':
                     if (!subSubMode) return `duels_sw_duel`
                     switch (subSubMode) {
@@ -483,10 +510,11 @@ function selectMode(mode, subMode, subSubMode) {
         case 'tntgames':
             if (!subMode) return null;
             switch (subMode) {
-                case 'tntrun':
+                case 'run':
                 case 'trn':
                     return 'tnt_tntrun'
                 case 'pvprun':
+                case 'pvp':
                 case 'prn':
                     return ' tnt_pvprun'
                 case 'bowspleef':
@@ -498,6 +526,7 @@ function selectMode(mode, subMode, subSubMode) {
                 case 'wzd':
                     return 'tnt_capture'
                 case 'duels':
+                case 'duel':
                     return 'duels_bowspleef_duel'
                 default:
                     return null;
@@ -557,9 +586,11 @@ function selectMode(mode, subMode, subSubMode) {
                 case 'ctw':
                     return 'wool_capture_the_wool_two_twenty'
                 case 'sheepwars':
+                case 'sheep':
                 case 'spw':
                     return ' wool_sheep_wars_two_six'
                 case 'woolwars':
+                case 'wars':
                 case 'ww':
                     return 'wool_wool_wars_two_four'
                 default:
@@ -570,5 +601,93 @@ function selectMode(mode, subMode, subSubMode) {
             return null;
     }
 }
+//#endregion playCommands
 
-module.exports = { selectMode }
+//#region otherPlayCommands
+function modeGUI(client, target, mode) {
+    switch (mode) {
+        case 'arcade':
+        case 'var':
+            createGUI(client, 'open', 1, 'playArcade', target)
+            return true;
+        case 'zombies':
+        case 'z':
+            createGUI(client, 'open', 1, 'playZombies', target)
+            return true;
+        case 'classic':
+        case 'clc':
+            createGUI(client, 'open', 1, 'playClassic', target)
+            return true;
+        case 'arena':
+        case 'arenabrawl':
+        case 'abw':
+            createGUI(client, 'open', 1, 'playArena', target)
+            return true;
+        case 'quake':
+        case 'quakecraft':
+        case 'qke':
+            createGUI(client, 'open', 1, 'playQuake', target)
+            return true;
+        case 'bedwars':
+        case 'bw':
+            createGUI(client, 'open', 1, 'playBedwars', target)
+            return true;
+        case 'blitz':
+        case 'blitzsg':
+        case 'bsg':
+            createGUI(client, 'open', 1, 'playBlitz', target)
+            return true;
+        case 'buildbattle':
+        case 'bb':
+            createGUI(client, 'open', 1, 'playBuildBattle', target)
+            return true;
+        case 'copsandcrims':
+        case 'mcgo':
+        case 'cc':
+            createGUI(client, 'open', 1, 'playMCGO', target)
+            return true;
+        case 'duels':
+        case 'duel':
+        case 'dls':
+            createGUI(client, 'open', 1, 'playDuels', target)
+            return true;
+        case 'megawalls':
+        case 'mw':
+            createGUI(client, 'open', 1, 'playMW', target)
+            return true;
+        case 'murdermystery':
+        case 'murder':
+        case 'mm':
+            createGUI(client, 'open', 1, 'playMM', target)
+            return true;
+        case 'skywars':
+        case 'sw':
+            createGUI(client, 'open', 1, 'playSW', target)
+            return true;
+        case 'smash':
+        case 'smashheroes':
+        case 'smh':
+            createGUI(client, 'open', 1, 'playSMH', target)
+            return true;
+        case 'tnt':
+        case 'tntgames':
+            createGUI(client, 'open', 1, 'playTNT', target)
+            return true;
+        case 'uhc':
+        case 'speeduhc':
+            createGUI(client, 'open', 1, 'playUHC', target)
+            return true;
+        case 'warlords':
+        case 'wrl':
+            createGUI(client, 'open', 1, 'playWarlords', target)
+            return true;
+        case 'woolgames':
+        case 'wool':
+        case 'wg':
+            createGUI(client, 'open', 1, 'playWool', target)
+            return true;
+    }
+}
+//#endregion otherPlayCommands
+
+module.exports = { selectMode, modeGUI }

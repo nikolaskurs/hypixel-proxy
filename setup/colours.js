@@ -36,7 +36,7 @@ const chalkColours = {
     'e': chalk.hex('#FFFF55'),
     'f': chalk.hex('#FFFFFF'),
     /*'l': chalk.bold, 
-    'o': chalk.italic,      for newer cmds - doesnt work on mine so removed.
+    'o': chalk.italic,      for newer terminals - doesnt work on mine so removed :D
     'n': chalk.underline,
     'm': chalk.strikethrough,*/
     'r': chalk.reset

@@ -1,9 +1,9 @@
 const log = require('../../setup/log.js')
+const prefix = require('../../setup/prefix.js')
 
 module.exports = {
-  name: 'test',
+  name: 'log',
   execute({ client }) {
-    const prefix = '§c[§6§lPROXY§r§c] » §7';
     client.write('chat', {
       message: JSON.stringify({ text: `${prefix}Open Terminal` }),
       position: 0
@@ -13,5 +13,6 @@ module.exports = {
     log.error('Error')
     log.info('Info')
     log.message('Message')
+    log.debug('Debug')
   }
 };

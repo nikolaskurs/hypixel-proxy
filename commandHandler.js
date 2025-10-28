@@ -3,7 +3,8 @@ const commands = {
     log: require('./commands/admin/log.js'),
 
     api: require('./commands/game/api.js'),
-    play: require('./commands/game/play.js')
+    play: require('./commands/game/play.js'),
+    ap: require('./commands/game/ap.js')
 };
 
 function handleCommand({ message, client, target }) {
