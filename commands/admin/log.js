@@ -5,7 +5,7 @@ module.exports = {
   name: 'log',
   execute({ client }) {
     client.write('chat', {
-      message: JSON.stringify({ text: `${prefix}Open Terminal` }),
+      message: JSON.stringify({ text: `${prefix}§7Open Terminal` }),
       position: 0
     });
     log.success('Success')

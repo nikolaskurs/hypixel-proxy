@@ -27,9 +27,8 @@ module.exports = {
         const arg = args[0].toLowerCase(); // mode
         const subArg = args[1]?.toLowerCase(); // submode (optional)
         const subSubArg = args[2]?.toLowerCase(); // sub-submode (optional)
-        const needGUI = modeGUI(client, target, arg)
-        if (needGUI) // If command opens a GUI, stop rest of logic
-            return;
+        const needGUI = (!subArg && !subSubArg) && modeGUI(client, target, arg);
+        if (needGUI) return;
         const mode = selectMode(arg, subArg, subSubArg); // call switch case function
         // --- SEND COMMAND ----------------------------------------------
         if (mode) {
