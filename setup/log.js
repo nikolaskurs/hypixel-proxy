@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const chalkColours = require('./colours.js')
-const { getSettings } = require('../proxy/settings/getSettings.js')
 
 const date = new Date();
 const dateStr = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}`
@@ -17,9 +16,18 @@ while (fs.existsSync(logFileName)) {
     logFileName = path.join(logsDir, `logs_${dateStr}_${fileIndex}.txt`);
 }
 
+let recordLogsToFile = true; //default = true
+
+function setRecordLogsToFile(value) {
+  if (value === 'toggle') {
+    recordLogsToFile = !recordLogsToFile;
+  } else {
+    recordLogsToFile = !!value;
+  }
+}
+
 function logToFile(sym, msg) {
-    const settings = getSettings();
-    if (!settings.chat.recordLogsToFile) return;
+    if (!recordLogsToFile) return;
 
     const time = new Date().toISOString().replace('T', '').replace('Z', '')
     const logMessage = `[${time}] [${sym}] ${msg}\n`
@@ -35,5 +43,7 @@ const log = {
     debug: (msg) => { console.log(`${chalkColours.LIGHT_PURPLE('[~]')} ${chalkColours.LIGHT_PURPLE(msg)}`), logToFile('~', msg) },
     invis: (msg) => logToFile('i', msg)
 }
+
+log.setRecordLogsToFile = setRecordLogsToFile // prevent destructuring log each time #timesaver
 
 module.exports = log

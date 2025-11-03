@@ -95,6 +95,18 @@ This project is currently a WIP, and new versions may be released.
 - Full Project Restructure.
 - Logging System for better debug.
 
+**Issues**
+- Logs in [tokens.js](./setup/tokens.js) cause issues on initial load.
+- Logs in [getSettings.js](./proxy/settings/getSettings.js) cause issues on initial load.
+
+### v1.0.3
+**Features**
+- Added Favicon
+- Added MOTDs (WIP)
+
+**Fixes**
+- Fixed Logging Issues in multiple files
+
 
 ## Authors
 

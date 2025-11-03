@@ -3,17 +3,17 @@ const log = require('./log.js')
 
 function createDir(dir) {
     if (!fs.existsSync(dir)) {
-        //log.warn(`${dir} does not exist — attempting to create...`);
+        log.warn(`${dir} does not exist — attempting to create...`);
         try {
             fs.mkdirSync(dir, { recursive: true });
 
             if (fs.existsSync(dir)) {
-                //log.success(`Successfully created ${dir}`);
+                log.success(`Successfully created ${dir}`);
             } else {
-                //log.error(`Failed to create ${dir}`);
+                log.error(`Failed to create ${dir}`);
             }
         } catch (err) {
-            //log.error(`Error: ${err.message}`);
+            log.error(`Error: ${err.message}`);
         }
     }
 }

@@ -6,6 +6,7 @@ const { commands, handleCommand } = require('./proxy/commands/commandHandler.js'
 const { alertNewVersion } = require('./setup/version.js')
 const { parseLocraw } = require('./proxy/modules/location/parseLocraw.js')
 const { cacheInventory } = require('./proxy/modules/gui/inventory.js')
+const { MOTD, randomMOTD } = require('./setup/motd.js')
 
 // ─── START UP ──────────────────────────────────────────────────────────
 // --- COSMETICS ---------------------------------------------------------
@@ -23,15 +24,16 @@ const settings = './proxy/settings/settings.json'
 const { checkSettings, getSettings } = require('./proxy/settings/getSettings.js');
 checkSettings(settings)
 // --- CHECK FOR OUTDATED VERSIONS ---------------------------------------
-const globalVersion = '1.0.2' // change to call from api
+const globalVersion = '1.0.3' // change to call from api
 alertNewVersion(globalVersion)
 // ─── CREATE LOCAL SERVER ───────────────────────────────────────────────
 const port = 25565
 const proxy = mc.createServer({
     'online-mode': true,
     port,
-    motd: `proxy`,
+    motd: `         §cHypixel §6Open-Source Proxy §cServer\n§f${randomMOTD(MOTD)}`,
     version: '1.8.9',
+    favicon: require("./setup/favicon"),
     maxPlayers: 1,
 });
 log.success(`Proxy running on localhost:${port}`);
