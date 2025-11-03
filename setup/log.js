@@ -4,7 +4,7 @@ const chalkColours = require('./colours.js')
 const { getSettings } = require('../proxy/settings/getSettings.js')
 
 const date = new Date();
-const dateStr = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth()).padStart(2, '0')}-${date.getFullYear()}`
+const dateStr = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}`
 const logsDir = './local/logs'
 if (!fs.existsSync(logsDir)) {
   fs.mkdirSync(logsDir, { recursive: true });
