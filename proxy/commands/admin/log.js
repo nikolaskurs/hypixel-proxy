@@ -1,5 +1,5 @@
-const log = require('../../setup/log.js')
-const prefix = require('../../setup/prefix.js')
+const log = require('../../../setup/log.js')
+const prefix = require('../../../setup/prefix.js')
 
 module.exports = {
   name: 'log',
@@ -14,5 +14,6 @@ module.exports = {
     log.info('Info')
     log.message('Message')
     log.debug('Debug')
+    log.invis('Invisible')
   }
 };

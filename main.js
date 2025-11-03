@@ -2,26 +2,28 @@ const mc = require('minecraft-protocol');
 const { Authflow } = require('prismarine-auth');
 const { formatMCChat } = require('./setup/chat.js');
 const log = require('./setup/log.js')
-const { commands, handleCommand } = require('./commandHandler.js')
+const { commands, handleCommand } = require('./proxy/commands/commandHandler.js')
 const { alertNewVersion } = require('./setup/version.js')
-const { parseLocraw } = require('./location/parseLocraw.js')
-const { cacheInventory } = require('./gui/inventory.js')
+const { parseLocraw } = require('./proxy/modules/location/parseLocraw.js')
+const { cacheInventory } = require('./proxy/modules/gui/inventory.js')
 
 // ─── START UP ──────────────────────────────────────────────────────────
 // --- COSMETICS ---------------------------------------------------------
 const startupMessage = require('./setup/startup.js')
 console.log(startupMessage)
-// --- CHECK AND CREATE loginTokens DIR ----------------------------------
-const tokenDir = './loginTokens'
-const { createTokenDir, checkTokenDir } = require('./setup/tokens.js')
-createTokenDir(tokenDir)
-checkTokenDir(tokenDir)
+// --- CHECK AND CREATE DIRECTORIES --------------------------------------
+const tokenDir = './local/loginTokens'
+const logDir = './local/logs'
+const { createDir, checkDir } = require('./setup/tokens.js')
+createDir(tokenDir)
+checkDir(tokenDir)
+checkDir(logDir)
 // --- CHECK AND CREATE settings.json ------------------------------------
-const settings = './settings/settings.json'
-const { checkSettings, getSettings } = require('./settings/getSettings.js');
+const settings = './proxy/settings/settings.json'
+const { checkSettings, getSettings } = require('./proxy/settings/getSettings.js');
 checkSettings(settings)
 // --- CHECK FOR OUTDATED VERSIONS ---------------------------------------
-const globalVersion = '1.0.1' // change to call from api
+const globalVersion = '1.0.2' // change to call from api
 alertNewVersion(globalVersion)
 // ─── CREATE LOCAL SERVER ───────────────────────────────────────────────
 const port = 25565
@@ -56,6 +58,7 @@ proxy.on('login', async (client) => {
             accessToken: mcToken.token,
             version: `1.8.9`
         });
+
         // ─── RELAY PACKETS ─────────────────────────────────────────────
         // Relay all target packets to client and vice versa.
         // --- RECORD TARGET PACKETS -------------------------------------
@@ -84,7 +87,7 @@ proxy.on('login', async (client) => {
         client.write = (name, data) => {
             if (name === 'chat' && data?.message && data.position === 0) {
                 const settings = getSettings();
-                if (settings.chat.fullLogs) {
+                if (settings.chat.recordAllMessages) {
                     const msg = JSON.parse(data.message);
                     if (msg) console.log(formatMCChat(msg));
                 }
@@ -97,7 +100,7 @@ proxy.on('login', async (client) => {
                 if (meta.name === 'chat') {
                     const msg = data.message;
                     const settings = getSettings();
-                    if (settings.chat.selfLogs) {
+                    if (settings.chat.recordClientMessages) {
                         log.message(msg)
                     } // Client Message Logs - add toggle
                     // --- HANDLE COMMANDS --------------------------------

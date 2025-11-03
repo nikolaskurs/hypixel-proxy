@@ -8,7 +8,8 @@ const msgs = [
     ["shut up demon", "ぞるとらく (zoltraak)"],
     ["Spread LOVE", "Not HATE"],
     ["how to make pickle pepsi at home for free", "https://www.youtube.com/watch?v=1yMozrDEqbg"],
-    ["join and give suggestions pls!", "https://discord.gg/ukcfz33836"]
+    ["join and give suggestions pls!", "https://discord.gg/ukcfz33836"],
+    ["WORK IN PROGRESS", "EXPECT UNFINISHED CONTENT AND BUGS"]
 
 ];
 

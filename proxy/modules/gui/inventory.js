@@ -1,4 +1,4 @@
-const log = require('../setup/log.js')
+const log = require('../../../setup/log.js')
 
 const inventoryCache = new Map();
 
@@ -6,7 +6,7 @@ const inventoryCache = new Map();
 function cacheInventory(client, slots) {
     if (!client || !Array.isArray(slots)) return;
     inventoryCache.set(client, JSON.parse(JSON.stringify(slots)));
-    //log.debug('Inventory Cache Set')
+    log.invis('Inventory Cache Set') //Sent often consider disabling
 }
 // ─── LOAD INVENTORY ────────────────────────────────────────────────────
 function loadInventory(client) {
@@ -22,13 +22,13 @@ function loadInventory(client) {
         windowId: 0,
         items: cached
     });
-    //log.debug('Inventory Loaded')
+    log.invis('Inventory Loaded')
 }
 // ─── CLEAR INVENTORY CACHE ─────────────────────────────────────────────
 function clearInventoryCache(client) {
     if (inventoryCache.has(client)) {
         inventoryCache.delete(client);
-        log.debug('Inventory Cache Cleared')
+        log.warn('Inventory Cache Cleared')
     }
 }
 // ─── DISPLAY INVENTORY IN GUI ──────────────────────────────────────────
@@ -57,7 +57,7 @@ function displayInventory(client) {
         items
     });
     // --- DEBUG MESSAGE (KEEP) ------------------------------------------
-    log.debug(`Displayed ${cached.length} cached items in gui`);
+    log.invis(`Displayed ${cached.length} cached items in gui`);
 }
 
 module.exports = {

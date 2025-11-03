@@ -1,4 +1,4 @@
-const log = require('../setup/log.js')
+const log = require('../../../setup/log.js')
 const { loadInventory } = require('./inventory.js')
 
 // ─── CREATE GUI ────────────────────────────────────────────────────────
@@ -21,7 +21,9 @@ function createGUI(client, mode, windowId, layout, target = client) {
             slotCount: guiLayout.slotCount,
             entityId: 0
         });
+        log.invis(`GUI opened: ${windowId}`)
     }
+    log.invis(`GUI items resent: ${windowId}`)
     // --- DEFINE SENDITEMS ----------------------------------------------
     const sendItems = () => {
         client.write('window_items', {
@@ -88,6 +90,7 @@ function createGUI(client, mode, windowId, layout, target = client) {
 function closeGUI(client, windowId) {
     client.write('close_window', { windowId });
     if (client.removeGUIListeners) client.removeGUIListeners();
+    log.invis(`GUI closed: ${windowId}`)
 }
 
 module.exports = {

@@ -1,12 +1,11 @@
-const log = require('../../setup/log.js')
-const prefix = require('../../setup/prefix.js')
-const { location } = require('../../location/parseLocraw.js')
+const log = require('../../../setup/log.js')
+const prefix = require('../../../setup/prefix.js')
+const { location } = require('../../modules/location/parseLocraw.js')
 const { getSettings, writeSettings } = require('../../settings/getSettings.js')
-const { xpBar } = require('../../renameMe/xpBar.js')
-const { loadInventory, clearInventoryCache, inventoryCache, displayInventory } = require('../../gui/inventory.js')
-const { createGUI } = require('../../gui/setup.js')
-const { test } = require('../../gui/gui.js')
-const { playSoundAtPosition } = require('../../renameMe/sound.js')
+const { xpBar } = require('../../modules/renameMe/xpBar.js')
+const { clearInventoryCache, displayInventory } = require('../../modules/gui/inventory.js')
+const { createGUI } = require('../../modules/gui/setup.js')
+const { playSoundAtPosition } = require('../../modules/renameMe/sound.js')
 
 
 module.exports = {
@@ -32,6 +31,16 @@ module.exports = {
         }),
         position: 0
       });
+      log.invis('Chat message sent to position 0')
+    }
+    if (arg === 'chat2') {
+      client.write('chat', {
+        message: JSON.stringify({
+          text: `\n${prefix}§7Test Chat Message.\n`
+        }),
+        position: 2
+      });
+      log.invis('Chat message sent to position 2')
     }
     // --- DISPLAY LOCATION DATA -----------------------------------------
     if (arg === 'location') {
@@ -46,6 +55,7 @@ module.exports = {
         }),
         position: 0
       });
+      log.invis('Chat message sent with location data')
     }
     // --- TOGGLE BOOLEAN OF TEST SETTING --------------------------------
     if (arg === 'settings') {
@@ -67,7 +77,7 @@ module.exports = {
       if (!subArg) {
         client.write('chat', {
           message: JSON.stringify({
-            text: `\n${prefix}§7Usage: §6Display§7,§6Clear§7.\n`
+            text: `\n${prefix}§7Usage: §6Display§7, §6Clear§7.\n`
           }),
           position: 0
         });

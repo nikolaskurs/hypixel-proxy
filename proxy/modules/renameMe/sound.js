@@ -1,4 +1,4 @@
-const log = require('../setup/log.js')
+const log = require('../../../setup/log.js')
 
 function playSoundAtPosition(client, soundName) {
   return new Promise((resolve, reject) => {
@@ -17,6 +17,7 @@ function playSoundAtPosition(client, soundName) {
         pitch: 2.0
       });
       resolve();
+      log.invis(`Sound (${soundName}) played`)
     });
   });
 }

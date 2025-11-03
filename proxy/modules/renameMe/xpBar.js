@@ -1,6 +1,7 @@
 let isCooldownActive = false;
 const { location } = require('../location/parseLocraw.js')
 const { playSoundAtPosition } = require('./sound.js')
+const log = require(`../../../setup/log.js`)
 
 async function xpBar(client, action, durationSeconds, showLevel, sound) {
     if (action === 'countdown') {
@@ -18,6 +19,7 @@ async function xpBar(client, action, durationSeconds, showLevel, sound) {
             level: showLevel ? durationSeconds : 0,
             totalExperience: 0
         });
+        log.invis(`xpBar cooldown started with duration of ${durationSeconds}`)
 
         const interval = setInterval(() => {
             if (location.server !== startingServer) {

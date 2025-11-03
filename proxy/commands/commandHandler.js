@@ -1,10 +1,10 @@
 const commands = {
-    test: require('./commands/admin/test.js'),
-    log: require('./commands/admin/log.js'),
+    test: require('./admin/test.js'),
+    log: require('./admin/log.js'),
 
-    api: require('./commands/game/api.js'),
-    play: require('./commands/game/play.js'),
-    ap: require('./commands/game/ap.js')
+    api: require('./game/api.js'),
+    play: require('./game/play.js'),
+    ap: require('./game/ap.js')
 };
 
 function handleCommand({ message, client, target }) {

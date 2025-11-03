@@ -1,0 +1,9 @@
+{
+  "test": true,
+  "play": true,
+  "chat": {
+    "recordClientMessages": true,
+    "recordAllMessages": true,
+    "recordLogsToFile": true
+  }
+}

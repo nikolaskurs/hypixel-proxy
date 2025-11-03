@@ -1,5 +1,5 @@
-const log = require('../setup/log.js')
-const prefix = require('../setup/prefix.js');
+const log = require('../../../setup/log.js')
+const prefix = require('../../../setup/prefix.js');
 const { closeGUI, createGUI } = require('./setup.js');
 const { playItem, closeItem, navigateItem } = require('./helpers.js');
 

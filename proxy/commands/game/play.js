@@ -1,6 +1,6 @@
-const { selectMode, modeGUI } = require('../../setup/modes.js')
+const { selectMode, modeGUI } = require('../../../setup/modes.js')
 const { getSettings } = require('../../settings/getSettings.js')
-const prefix = require('../../setup/prefix.js')
+const prefix = require('../../../setup/prefix.js')
 
 // TODO ADD /PLAY DISABLING LOGIC.
 

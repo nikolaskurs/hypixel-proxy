@@ -1,4 +1,4 @@
-const log = require('../setup/log.js');
+const log = require('../../../setup/log.js');
 
 const location = { // see ../commands/admin/test.js for example use.
     server: null,

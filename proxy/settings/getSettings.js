@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const log = require('../setup/log.js')
+const log = require('../../setup/log.js')
 const settingsPath = path.resolve(__dirname, './settings.json');
 const defaultSettingsPath = path.resolve(__dirname, './defaultSettings.json');
 
@@ -60,12 +60,14 @@ function writeSettings(path, value) {
             const current = target[finalKey];
             if (typeof current === 'boolean') {
                 target[finalKey] = !current;
+                log.invis(`Setting ${path} set to: ${target[finalKey]}`);
             } else {
                 log.warn(`Cannot toggle non-boolean value at ${path}.`);
                 return;
             }
         } else {
             target[finalKey] = value;
+            log.invis(`Setting ${path} set to: ${value}`);
         }
         fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 2), 'utf8');
         cachedSettings = settings;

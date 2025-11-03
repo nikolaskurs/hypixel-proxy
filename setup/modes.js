@@ -1,4 +1,4 @@
-const { createGUI } = require("../gui/setup");
+const { createGUI } = require("../proxy/modules/gui/setup");
 
 //#region playCommands
 function selectMode(mode, subMode, subSubMode) {

@@ -90,6 +90,12 @@ This project is currently a WIP, and new versions may be released.
 - Add Custom Player Heads inside the /play GUIs.
 - A lot of API work - possibly intergrating an already existing wrapper into the code.
 
+### v1.0.2
+**Features**
+- Full Project Restructure.
+- Logging System for better debug.
+
+
 ## Authors
 
 - **Nikolas 'kqt' Kurš**  
