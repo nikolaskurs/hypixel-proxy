@@ -10,19 +10,19 @@ const CACHE_DURATION = 5000;
 
 function checkSettings(file) {
     if (!fs.existsSync(file)) {
-        log.warn(`${file} does not exist — attempting to create...`);
+        //log.warn(`${file} does not exist — attempting to create...`);
         try {
             const defaultSettings = JSON.parse(fs.readFileSync(defaultSettingsPath, 'utf8'));
 
             fs.writeFileSync(file, JSON.stringify(defaultSettings, null, 2));
 
             if (fs.existsSync(file)) {
-                log.success(`Successfully created ${file}`);
+                //log.success(`Successfully created ${file}`);
             } else {
-                log.error(`Failed to create ${file}`);
+                //log.error(`Failed to create ${file}`);
             }
         } catch (err) {
-            log.error(`Error creating ${file}: ${err.message}`);
+            //log.error(`Error creating ${file}: ${err.message}`);
         }
     }
 }
