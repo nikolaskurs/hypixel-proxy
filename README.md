@@ -101,11 +101,11 @@ This project is currently a WIP, and new versions may be released.
 
 ### v1.0.3
 **Features**
-- Added Favicon
-- Added MOTDs (WIP)
+- Added Favicon.
+- Added MOTDs (WIP).
 
 **Fixes**
-- Fixed Logging Issues in multiple files
+- Fixed Logging Issues in multiple files.
 
 
 ## Authors
@@ -115,7 +115,7 @@ This project is currently a WIP, and new versions may be released.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
 ## Acknowledgments
 - [PrismarineJS/node-minecraft-protocol](https://github.com/PrismarineJS/node-minecraft-protocol)
